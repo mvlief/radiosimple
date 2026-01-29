@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio - Simple</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+
+            /* Background image */
+            background-image: url("img2.jpg");
+            background-size: contain;
+            /*background-size: cover;*/
+            background-repeat: repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Dark overlay for readability */
+        .overlay {
+            background: rgba(0, 0, 0, 0.2);
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            max-width: 700px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .fixed-bottom-right {
+    /* Positioning */
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    right: 20px; /* Distance from the right of the viewport */
+    z-index: 1000; /* Ensures the button is above other content */
+
+    /* Sizing and Shape */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Makes the element a circle */
+
+    /* Appearance and Alignment */
+    background-color: white; /* Button color */
+    color: black; /* Text color */
+    text-align: center; /* Centers text horizontally */
+    line-height: 60px; /* Centers text vertically for single-line text */
+    text-decoration: none; /* Removes default link underline */
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Optional: adds a subtle shadow */
+    display: inline-block; /* Allows width/height to be set and works well with text-align */
+}
+
+.fixed-ig {
+            /* Positioning */
+            position: fixed;
+            bottom: 100px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+        .fixed-email {
+            /* Positioning */
+            position: fixed;
+            bottom: 180px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+
+
+        .music-player {
+            margin-top: 30px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <h1>Hi, I'm Mathilde</h1>
+
+        <p>
+            I'm the Digital Operations Manager at label, Captured Tracks<br>I listen to a lot of music<br>I play some music in a new band called Shoulder<br>
+            Here, I'll talk a bit, write a bit, play some music
+
+            <br><br>thanks and enjoy
+            <br><br>
+            -Mathilde VL
+        </p>
+
+       
+
+
+        
+
+
+        <p class="fixed-bottom-right">
+            <a href="index.html">Radio</a>
+        </p>
+        <p class="fixed-ig">
+            <a href="https://www.instagram.com/mathilde.vl.1/">ig</a>
+        </p>
+        <p class="fixed-email">
+            <a href="mailto:mathildevanlief@gmail.com">email</a>
+        </p>
+
+
+    </div>
+</body>
+
+</html>
