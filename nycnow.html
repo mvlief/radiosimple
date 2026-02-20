@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio - Simple</title>
+
+    <style>
+
+        @media screen and (max-width: 768px) {
+  .column {
+    width: 100%; /* Makes columns stack vertically on smaller screens */
+  }
+}
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+
+            /* Background image */
+            background-image: url("img2.jpg");
+            background-size: contain;
+            /*background-size: cover;*/
+            background-repeat: repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Dark overlay for readability */
+        .overlay {
+            background: rgba(0, 0, 0, 0.2);
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            max-width: 700px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .fixed-bottom-right {
+            /* Positioning */
+            position: fixed;
+            bottom: 20px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+        .fixed-bottom-right-above {
+            /* Positioning */
+            position: fixed;
+            bottom: 260px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+        .fixed-ig {
+            /* Positioning */
+            position: fixed;
+            bottom: 100px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+        .fixed-email {
+            /* Positioning */
+            position: fixed;
+            bottom: 180px;
+            /* Distance from the bottom of the viewport */
+            right: 20px;
+            /* Distance from the right of the viewport */
+            z-index: 1000;
+            /* Ensures the button is above other content */
+
+            /* Sizing and Shape */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            /* Makes the element a circle */
+
+            /* Appearance and Alignment */
+            background-color: white;
+            /* Button color */
+            color: black;
+            /* Text color */
+            text-align: center;
+            /* Centers text horizontally */
+            line-height: 60px;
+            /* Centers text vertically for single-line text */
+            text-decoration: none;
+            /* Removes default link underline */
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Optional: adds a subtle shadow */
+            display: inline-block;
+            /* Allows width/height to be set and works well with text-align */
+        }
+
+
+        .music-player {
+            margin-top: 30px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 700px;
+        }
+
+
+
+
+
+.calendar {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 5px;
+      padding: 10px;
+    }
+
+    .day {
+      border: 1px solid black;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    .date-number {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .event {
+      margin-top: 2px;
+      font-size: 13px;
+    }
+
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <h1>What's coming up in New York</h1>
+
+        <p>
+            There's always so much going on here. <br>Here's a quick look at what upcoming shows look cool to me in nyc.<br>
+
+            
+            -Mathilde
+        </p>
+
+        <p>
+            Listen below
+        </p>
+
+
+
+        <h1 id="monthYear"></h1>
+  <div class="calendar" id="calendar"></div>
+
+
+        <div class="music-player">
+            <h3>🎵 02/12/2026</h3>
+            <p>
+                includes:
+                <br>Jaye Bartell
+                <br>X
+                <br>Jackie O-Motherfucker
+            </p>
+            <audio controls>
+                <source
+                    src="show2.mp3"
+                    type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+
+        <div class="music-player">
+            <h3>🎵 01/29/2026</h3>
+            <p>
+                includes:
+                <br>Tentative
+                <br>These Trails
+                <br>Field Commander Ali
+            </p>
+            <audio controls>
+                <source
+                    src="show1.mp3"
+                    type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+
+        <p class="fixed-bottom-right-above">
+            <a href="index.html">radio</a>
+        </p>
+        <p class="fixed-bottom-right">
+            <a href="about.html">about</a>
+        </p>
+        <p class="fixed-ig">
+            <a href="https://www.instagram.com/mathilde.vl.1/">ig</a>
+        </p>
+        <p class="fixed-email">
+            <a href="mailto:mathildevanlief@gmail.com">email</a>
+        </p>
+
+
+    </div>
+
+
+
+   <script>
+    const calendar = document.getElementById("calendar");
+    const monthYear = document.getElementById("monthYear");
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+
+    monthYear.textContent = now.toLocaleString("default", {
+      month: "long",
+      year: "numeric"
+    });
+
+    // ✏️ WRITE YOUR EVENTS HERE
+    // Format: dayNumber: ["Event 1", "Event 2"]
+    const events = {
+      3: ["Doctor Appointment"],
+      7: ["Project Due"],
+      14: ["Birthday Party"],
+      21: ["Meeting at 10AM", "Dinner at 7PM"],
+      28: ["Vacation Starts"]
+    };
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    // Empty spaces before first day
+    for (let i = 0; i < firstDay; i++) {
+      const emptyCell = document.createElement("div");
+      calendar.appendChild(emptyCell);
+    }
+
+    // Create days
+    for (let day = 1; day <= totalDays; day++) {
+      const dayDiv = document.createElement("div");
+      dayDiv.classList.add("day");
+
+      const dateNumber = document.createElement("div");
+      dateNumber.classList.add("date-number");
+      dateNumber.textContent = day;
+
+      dayDiv.appendChild(dateNumber);
+
+      // Add events if they exist
+      if (events[day]) {
+        events[day].forEach(eventText => {
+          const eventDiv = document.createElement("div");
+          eventDiv.classList.add("event");
+          eventDiv.textContent = "• " + eventText;
+          dayDiv.appendChild(eventDiv);
+        });
+      }
+
+      calendar.appendChild(dayDiv);
+    }
+  </script> 
+</body>
+
+</html>
