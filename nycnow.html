@@ -236,7 +236,7 @@
         <h1>What's coming up in New York</h1>
 
         <p>
-            There's always so much going on here. <br>Here's a quick look at what upcoming shows look cool to me in nyc.<br>
+            There's always so much going on here. <br>Here's a quick look at what upcoming shows/music related events look cool to me in nyc.<br>
 
             
             -Mathilde
@@ -252,38 +252,7 @@
   <div class="calendar" id="calendar"></div>
 
 
-        <div class="music-player">
-            <h3>🎵 02/12/2026</h3>
-            <p>
-                includes:
-                <br>Jaye Bartell
-                <br>X
-                <br>Jackie O-Motherfucker
-            </p>
-            <audio controls>
-                <source
-                    src="show2.mp3"
-                    type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-
-        <div class="music-player">
-            <h3>🎵 01/29/2026</h3>
-            <p>
-                includes:
-                <br>Tentative
-                <br>These Trails
-                <br>Field Commander Ali
-            </p>
-            <audio controls>
-                <source
-                    src="show1.mp3"
-                    type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
+        
 
 
         <p class="fixed-bottom-right-above">
@@ -305,61 +274,84 @@
 
 
    <script>
-    const calendar = document.getElementById("calendar");
-    const monthYear = document.getElementById("monthYear");
+  document.addEventListener("DOMContentLoaded", function () {
 
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
+  const calendar = document.getElementById("calendar");
 
-    monthYear.textContent = now.toLocaleString("default", {
-      month: "long",
-      year: "numeric"
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const todayDate = today.getDate();
+
+  // ✏️ WRITE YOUR EVENTS HERE (for next 3 weeks only)
+  const events = {
+    "2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
+    "2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
+    "2026-02-21": ["Naima Bock [listen] [link]", "Record Fair @ NYPLA Lincoln Center - includes talk about Lou Reed [listen]"],
+    "2026-02-23": ["Catcher @ Nightclub 101, Asher White @ Stone Circle Theatre"],
+    "2026-02-24": ["E.R. Visit @ Purgatory", "Six Organs of Admittance @ Union Pool"],
+    "2026-02-26": ["Laurie Anderson Talk @ Columbia University - Lenfest Hall", "GUV @ Elsewhere"],
+    "2026-02-28": ["Vacation Starts"]
+  };
+
+
+// Start date (today)
+  const startDate = new Date(year, month, todayDate);
+
+  // End date (exactly 21 days total including today)
+  const endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate() + 20);
+
+  let currentDate = new Date(startDate);
+
+  // ---------- CALENDAR FOR NEXT 3 WEEKS ----------
+  while (currentDate <= endDate) {
+
+    // Show Month + Year once at the top
+    if (currentDate.getTime() === startDate.getTime()) {
+      const monthYearTitle = document.createElement("h2");
+      monthYearTitle.textContent = currentDate.toLocaleString("default", {
+        month: "long",
+        year: "numeric"
+      });
+      calendar.appendChild(monthYearTitle);
+    }
+
+    // Create day container
+    const dayDiv = document.createElement("div");
+    dayDiv.classList.add("day");
+
+    const dateNumber = document.createElement("div");
+    dateNumber.classList.add("date-number");
+
+    const weekday = currentDate.toLocaleString("default", {
+      weekday: "short"
     });
 
-    // ✏️ WRITE YOUR EVENTS HERE
-    // Format: dayNumber: ["Event 1", "Event 2"]
-    const events = {
-      3: ["Doctor Appointment"],
-      7: ["Project Due"],
-      14: ["Birthday Party"],
-      21: ["Meeting at 10AM", "Dinner at 7PM"],
-      28: ["Vacation Starts"]
-    };
+    dateNumber.textContent = weekday + " " + currentDate.getDate();
+    dayDiv.appendChild(dateNumber);
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const totalDays = new Date(year, month + 1, 0).getDate();
+    // ✅ Generate YYYY-MM-DD key
+    const dateKey = currentDate.toISOString().split("T")[0];
 
-    // Empty spaces before first day
-    for (let i = 0; i < firstDay; i++) {
-      const emptyCell = document.createElement("div");
-      calendar.appendChild(emptyCell);
+    // Add events if they exist
+    if (events[dateKey]) {
+      events[dateKey].forEach(eventText => {
+        const eventDiv = document.createElement("div");
+        eventDiv.classList.add("event");
+        eventDiv.textContent = "• " + eventText;
+        dayDiv.appendChild(eventDiv);
+      });
     }
 
-    // Create days
-    for (let day = 1; day <= totalDays; day++) {
-      const dayDiv = document.createElement("div");
-      dayDiv.classList.add("day");
+    calendar.appendChild(dayDiv);
 
-      const dateNumber = document.createElement("div");
-      dateNumber.classList.add("date-number");
-      dateNumber.textContent = day;
+    // Move to next day
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
 
-      dayDiv.appendChild(dateNumber);
-
-      // Add events if they exist
-      if (events[day]) {
-        events[day].forEach(eventText => {
-          const eventDiv = document.createElement("div");
-          eventDiv.classList.add("event");
-          eventDiv.textContent = "• " + eventText;
-          dayDiv.appendChild(eventDiv);
-        });
-      }
-
-      calendar.appendChild(dayDiv);
-    }
-  </script> 
+});
+</script>
 </body>
 
 </html>
