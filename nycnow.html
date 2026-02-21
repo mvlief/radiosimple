@@ -7,12 +7,12 @@
     <title>Radio - Simple</title>
 
     <style>
-
         @media screen and (max-width: 768px) {
-  .column {
-    width: 100%; /* Makes columns stack vertically on smaller screens */
-  }
-}
+            .column {
+                width: 100%;
+                /* Makes columns stack vertically on smaller screens */
+            }
+        }
 
         body {
             margin: 0;
@@ -197,37 +197,32 @@
 
 
 
-.calendar {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      grid-auto-rows: 1fr;
-      gap: 5px;
-      padding: 10px;
-    }
+        .calendar {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 5px;
+            padding: 10px;
+        }
 
-    .day {
-      border: 1px solid black;
-      padding: 5px;
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-    }
+        .day {
+            border: 1px solid black;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
 
-    .date-number {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+        .date-number {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-    .event {
-      margin-top: 2px;
-      font-size: 13px;
-    }
-
-
-
-
-
+        .event {
+            margin-top: 2px;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -236,9 +231,10 @@
         <h1>What's coming up in New York</h1>
 
         <p>
-            There's always so much going on here. <br>Here's a quick look at what upcoming shows/music related events look cool to me in nyc.<br>
+            There's always so much going on here. <br>Here's a quick look at what upcoming shows/music related events
+            look cool to me in nyc.<br>
 
-            
+
             -Mathilde
         </p>
 
@@ -249,10 +245,10 @@
 
 
         <h1 id="monthYear"></h1>
-  <div class="calendar" id="calendar"></div>
+        <div class="calendar" id="calendar"></div>
 
 
-        
+
 
 
         <p class="fixed-bottom-right-above">
@@ -273,85 +269,121 @@
 
 
 
-   <script>
-  document.addEventListener("DOMContentLoaded", function () {
+    <script>
 
-  const calendar = document.getElementById("calendar");
+        // ✏️ WRITE YOUR EVENTS HERE (for next 3 weeks only)
+        const events = {
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
-  const todayDate = today.getDate();
+            //"2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
+            //"2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
+            "2026-02-21":
+                [
+                    { title: "Naima Bock", links: [{ text: "listen", url: "https://youtu.be/CaaqXRTEZGk" }] }, 
+                { title: "Record Fair @ NYPLA Lincoln Center - includes talk about Lou Reed", links: [{ text: "listen", url: "https://youtu.be/1SHCsgqZvQM" }] }
+            ],
+            "2026-02-23":
+                [
+                    { title: "Catcher @ Nightclub 101", links: [{ text: "listen", url: "google.com" }] }, 
+                { title: "Asher White @ Stone Circle Theatre", links: [{ text: "listen", url: "https://youtu.be/qJsd2ZtmAMQ" }] }
+            ],
+            "2026-02-26":
+                [
+                    { title: "Laurie Anderson Talk @ Columbia University - Lenfest Hall", links: [{ text: "listen", url: "https://youtu.be/RGL2Ne0V9mI" }] }, 
+                { title: "GUV @ Elsewhere", links: [{ text: "listen", url: "google.com" }] }
+            ],
+ 
 
-  // ✏️ WRITE YOUR EVENTS HERE (for next 3 weeks only)
-  const events = {
-    "2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
-    "2026-02-20": ["Drink The Sea (Duke Garwood & members of R.E.M) @ LPR"],
-    "2026-02-21": ["Naima Bock [listen] [link]", "Record Fair @ NYPLA Lincoln Center - includes talk about Lou Reed [listen]"],
-    "2026-02-23": ["Catcher @ Nightclub 101, Asher White @ Stone Circle Theatre"],
-    "2026-02-24": ["E.R. Visit @ Purgatory", "Six Organs of Admittance @ Union Pool"],
-    "2026-02-26": ["Laurie Anderson Talk @ Columbia University - Lenfest Hall", "GUV @ Elsewhere"],
-    "2026-02-28": ["Vacation Starts"]
-  };
+
+        };
 
 
-// Start date (today)
-  const startDate = new Date(year, month, todayDate);
 
-  // End date (exactly 21 days total including today)
-  const endDate = new Date(startDate);
-  endDate.setDate(startDate.getDate() + 20);
+        document.addEventListener("DOMContentLoaded", function () {
 
-  let currentDate = new Date(startDate);
+            const calendar = document.getElementById("calendar");
 
-  // ---------- CALENDAR FOR NEXT 3 WEEKS ----------
-  while (currentDate <= endDate) {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = today.getMonth();
+            const todayDate = today.getDate();
 
-    // Show Month + Year once at the top
-    if (currentDate.getTime() === startDate.getTime()) {
-      const monthYearTitle = document.createElement("h2");
-      monthYearTitle.textContent = currentDate.toLocaleString("default", {
-        month: "long",
-        year: "numeric"
-      });
-      calendar.appendChild(monthYearTitle);
-    }
 
-    // Create day container
-    const dayDiv = document.createElement("div");
-    dayDiv.classList.add("day");
 
-    const dateNumber = document.createElement("div");
-    dateNumber.classList.add("date-number");
+            // Start date (today)
+            const startDate = new Date(year, month, todayDate);
 
-    const weekday = currentDate.toLocaleString("default", {
-      weekday: "short"
-    });
+            // End date (exactly 21 days total including today)
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 20);
 
-    dateNumber.textContent = weekday + " " + currentDate.getDate();
-    dayDiv.appendChild(dateNumber);
+            let currentDate = new Date(startDate);
 
-    // ✅ Generate YYYY-MM-DD key
-    const dateKey = currentDate.toISOString().split("T")[0];
+            // ---------- CALENDAR FOR NEXT 3 WEEKS ----------
+            while (currentDate <= endDate) {
 
-    // Add events if they exist
-    if (events[dateKey]) {
-      events[dateKey].forEach(eventText => {
-        const eventDiv = document.createElement("div");
-        eventDiv.classList.add("event");
-        eventDiv.textContent = "• " + eventText;
-        dayDiv.appendChild(eventDiv);
-      });
-    }
+                // Show Month + Year once at the top
+                if (currentDate.getTime() === startDate.getTime()) {
+                    const monthYearTitle = document.createElement("h2");
+                    monthYearTitle.textContent = currentDate.toLocaleString("default", {
+                        month: "long",
+                        year: "numeric"
+                    });
+                    calendar.appendChild(monthYearTitle);
+                }
 
-    calendar.appendChild(dayDiv);
+                // Create day container
+                const dayDiv = document.createElement("div");
+                dayDiv.classList.add("day");
 
-    // Move to next day
-    currentDate.setDate(currentDate.getDate() + 1);
-  }
+                const dateNumber = document.createElement("div");
+                dateNumber.classList.add("date-number");
 
-});
-</script>
+                const weekday = currentDate.toLocaleString("default", {
+                    weekday: "short"
+                });
+
+                dateNumber.textContent = weekday + " " + currentDate.getDate();
+                dayDiv.appendChild(dateNumber);
+
+                // ✅ Generate YYYY-MM-DD key
+                const dateKey = currentDate.toISOString().split("T")[0];
+
+                // Add events if they exist
+                if (events[dateKey]) {
+                    events[dateKey].forEach(event => {
+                        const eventDiv = document.createElement("div");
+                        eventDiv.classList.add("event");
+
+                        // Event title
+                        const titleSpan = document.createElement("span");
+                        titleSpan.textContent = "• " + event.title;
+                        eventDiv.appendChild(titleSpan);
+
+                        // Add links if they exist
+                        if (event.links) {
+                            event.links.forEach(link => {
+                                const linkEl = document.createElement("a");
+                                linkEl.href = link.url;
+                                linkEl.textContent = " " + link.text;
+                                linkEl.target = "_blank"; // open in new tab
+                                linkEl.style.marginLeft = "6px";
+
+                                eventDiv.appendChild(linkEl);
+                            });
+                        }
+
+                        dayDiv.appendChild(eventDiv);
+                    });
+                }
+
+                calendar.appendChild(dayDiv);
+
+                // Move to next day
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+        });
+    </script>
 </body>
 
 </html>
